@@ -1,0 +1,52 @@
+<template>
+	<table
+		class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-table_striped slds-max-medium-table_stacked">
+		<thead>
+			<tr>
+				<th scope="col">
+					<div class="slds-truncate" title="">Store Names</div>
+				</th>
+				<th scope="col">
+					<div class="slds-truncate" title="">Contact Number</div>
+				</th>
+				<th scope="col">
+					<div class="slds-truncate" title="">Department</div>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<template if:true={storeArray}>
+				<template for:each={storeArray} for:item="storeName">
+					<template if:false={showChildren}>
+						<tr key={storeName.Store_Name__c}>
+							<td data-label="Store Name">
+								{storeName.Store_Name__c}
+								<lightning-button-icon icon-name="utility:chevrondown" alternative-text="Expand"
+									class="slds-m-left_xx-small" onclick={handleExpand}></lightning-button-icon>
+							</td>
+						</tr>
+					</template>
+					<template if:true={showChildren}>
+						<tr key={storeName.Store_Name__c}>
+							<td data-label="Store Name" rowspan={storeName.rowspan}>
+								{storeName.Store_Name__c}
+								<lightning-button-icon icon-name="utility:chevrondown" alternative-text="Expand"
+									class="slds-m-left_xx-small" onclick={handleExpand}></lightning-button-icon>
+							</td>
+						</tr>
+						<template for:each={storeName.stores} for:item="store">
+							<tr key={store.assetName}>
+								<td key={store.Contact_Number__c} data-label="Contact Number">
+									<lightning-formatted-phone value={store.Contact_Number__c}></lightning-formatted-phone>
+								</td>
+								<td key={store.Department__c} data-label="Department">
+									{store.Department__c}
+								</td>
+							</tr>
+						</template>
+					</template>
+				</template>
+			</template>
+		</tbody>
+	</table>
+</template>

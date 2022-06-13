@@ -1,0 +1,7 @@
+{
+  "name": "@wcd/brahmajitammana.lwc-kwjbcfqy-fork-l4cnx6p4",
+  "version": "0.0.0",
+  "scripts": {
+    "serve": "npx wcd-cli@latest serve OY5wcQYHuMG5YruM9GXt --open"
+  }
+}
